@@ -4,12 +4,12 @@ using UnityEngine;
 
 public abstract class Interactor : MonoBehaviour
 {   
-    [SerializeField] protected PlayerInput input;
+    protected PlayerInput input;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        input = PlayerInput.GetInstance();
     }
 
     // Update is called once per frame

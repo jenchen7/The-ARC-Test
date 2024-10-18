@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerTurnBehaviour : MonoBehaviour
 {   
-    [SerializeField] private PlayerInput input;
+    private PlayerInput input;
 
     [Header("Player Turn")]
     [SerializeField] private float turnSpeed;
@@ -12,7 +12,7 @@ public class PlayerTurnBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        input = PlayerInput.GetInstance();
     }
 
     // Update is called once per frame

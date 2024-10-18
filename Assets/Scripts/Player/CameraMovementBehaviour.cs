@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraMovementBehaviour : MonoBehaviour
 {   
-    [SerializeField] private PlayerInput input;
+    private PlayerInput input;
 
     [Header("Camera Turn")]
     [SerializeField] private float turnSpeed;
@@ -17,6 +17,8 @@ public class CameraMovementBehaviour : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        
+        input = PlayerInput.GetInstance();
     }
 
     // Update is called once per frame
@@ -27,7 +29,7 @@ public class CameraMovementBehaviour : MonoBehaviour
 
     void RotateCamera() {
         camXRotation += Time.deltaTime * input.mouseY * turnSpeed * (invertMouse ? 1 : -1);
-        camXRotation = Mathf.Clamp(camXRotation, -40f, 40f);
+        camXRotation = Mathf.Clamp(camXRotation, -40f, 35f);
 
         transform.localRotation = Quaternion.Euler(camXRotation, 0, 0);
     }

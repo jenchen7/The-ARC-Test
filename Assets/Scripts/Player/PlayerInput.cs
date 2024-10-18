@@ -25,8 +25,30 @@ public class PlayerInput : MonoBehaviour
 
     public bool secondaryShootPressed {get; private set; }
 
+    public bool weapon1Pressed {get; private set; }
+
+    public bool weapon2Pressed {get; private set; }
+
+    public bool commandPressed {get; private set; }
+
 
     private bool clear;
+
+    // singleton
+    private static PlayerInput instance;
+    
+    private void Awake() {
+        if(instance != null && instance != this) {
+            Destroy(instance);
+            return;
+        }
+
+        instance = this;
+    }
+
+    public static PlayerInput GetInstance() {
+        return instance;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -54,6 +76,11 @@ public class PlayerInput : MonoBehaviour
 
         primaryShootPressed = primaryShootPressed || Input.GetButtonDown("Fire1");
         secondaryShootPressed = secondaryShootPressed || Input.GetButtonDown("Fire2");
+
+        weapon1Pressed = weapon1Pressed || Input.GetKeyDown(KeyCode.Alpha1);
+        weapon2Pressed = weapon2Pressed || Input.GetKeyDown(KeyCode.Alpha2);
+
+        commandPressed = commandPressed || Input.GetKeyDown(KeyCode.G);
     }
 
 
@@ -77,5 +104,9 @@ public class PlayerInput : MonoBehaviour
         primaryShootPressed = false;
         secondaryShootPressed = false;
 
+        weapon1Pressed = false;
+        weapon2Pressed = false;
+
+        commandPressed = false;
     }
 }

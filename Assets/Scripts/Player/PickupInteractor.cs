@@ -27,6 +27,7 @@ public class PickupInteractor : Interactor
 
                 pickable.OnPicked(attachPoint);
                 isPicked = true;
+                AudioManager.instance.PlaySound("pickup");
                 return;
             }
         }
@@ -34,6 +35,7 @@ public class PickupInteractor : Interactor
         if (input.activatePressed && isPicked && pickable != null) {
             pickable.OnDropped();
             isPicked = false;
+            AudioManager.instance.PlaySound("drop");
         }
     }
 }
